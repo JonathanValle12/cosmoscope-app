@@ -1,6 +1,5 @@
+import EventPageContent from "@/components/events/EventPageContent";
 
 export default function Events() {
-    return (
-        <div>Events</div>
-    )
+    return <EventPageContent />
 }

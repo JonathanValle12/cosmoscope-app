@@ -1,11 +1,11 @@
-const NASA_API_KEY = "QnRtB5tIeDQ5fArJuD96Jvn430bQ7gsNAg4rkRWU";
+const API_KEY = process.env.NASA_API_KEY;
 
 export async function getApod() {
-    if (!NASA_API_KEY) {
-        throw new Error("Falta NASA_API_KEY en las variables de entorno");
+    if (!API_KEY) {
+        throw new Error("Falta API_KEY en las variables de entorno");
     }
 
-    const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`,
+    const res = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`,
         {
             next: {revalidate: 3600},
         }

@@ -1,10 +1,10 @@
 export interface EPICImage {
-    identifier: string,
-    caption: string,
-    image: string,
-    date: string,
+    identifier: string;
+    caption: string;
+    image: string;
+    date: string;
     centroid_coordinates: {
-        lat: number,
-        lon: number
+        lat: number;
+        lon: number;
     }
 }

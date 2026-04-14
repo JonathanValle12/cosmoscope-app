@@ -1,6 +1,5 @@
+import FavoritePageContent from "@/components/favorites/FavoritePageContent";
 
 export default function Favorites() {
-    return (
-        <div>Favorites</div>
-    )
+    return <FavoritePageContent />
 }

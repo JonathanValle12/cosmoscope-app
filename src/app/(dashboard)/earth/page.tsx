@@ -1,6 +1,5 @@
+import EarthPageContent from "@/components/earth/EarthPageContent";
 
 export default function Earth() {
-    return (
-        <div>Earth</div>
-    )
+    return <EarthPageContent />
 }

@@ -1,27 +1,60 @@
 
-export interface Asteroid {
-    id: string,
-    name: string,
-    nasa_jpl_url: string
-    absolute_magnitude_h: number
+export interface NasaAsteroid {
+    id: string;
+    name: string;
+    nasa_jpl_url: string;
+    is_potentially_hazardous_asteroid: boolean;
     estimated_diameter: {
-        kilometers: {
-            estimated_diameter_min: number
-            estimated_diameter_max: number
-        }
-    }
-    is_potentially_hazardous_asteroid: boolean
+        meters: {
+            estimated_diameter_min: number;
+            estimated_diameter_max: number;
+        };
+    };
     close_approach_data: {
-        close_approach_date: string
-        close_approach_date_full: string
-        relative_Velocity: {
-            kilometers_per_second: string
-            kilometers_per_hour: string
-        }
+        close_approach_date: string;
+        close_approach_date_full?: string;
+        relative_velocity: {
+            kilometers_per_hour: string;
+        };
         miss_distance: {
-            astronomical: string
-            lunar: string
-            kilometers: string
-        }
+            kilometers: string;
+        };
     }[];
+}
+
+export interface NeoFeedResponse {
+    element_count: number;
+    near_earth_objects: Record<string, NasaAsteroid[]>;
+}
+
+export interface AsteroidCardData {
+    id: string;
+    name: string;
+    nasaJplUrl: string;
+    diameterMeters: number;
+    velocityKmH: number;
+    missDistanceKm: number;
+    lunarDistance: number;
+    hazardous: boolean;
+    closestApproach: string;
+    sizeLabel: "Small" | "Medium" | "Large" | "Massive";
+}
+
+export interface AsteroidDayGroup {
+    date: string;
+    formattedDate: string;
+    count: number;
+    asteroids: AsteroidCardData[];
+}
+
+export interface AsteroidStats {
+    totalThisWeek: number;
+    hazardousCount: number;
+    maxVelocityKmH: number;
+    trackingPeriodDays: number;
+}
+
+export interface AsteroidsPageData {
+    stats: AsteroidStats;
+    days: AsteroidDayGroup[];
 }

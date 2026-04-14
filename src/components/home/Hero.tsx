@@ -1,6 +1,7 @@
 import { getApod } from "@/lib/nasa/apod";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 import FavoriteButton from "../favorites/FavoriteButton";
+import Image from "next/image";
 
 export default async function Hero() {
 
@@ -9,9 +10,9 @@ export default async function Hero() {
     const hasImage = apod.media_type === "image" && apod.url;
 
     return (
-        <section className="relative min-h-[430px] overflow-hidden rounded-[30px] border border-white/10 bg-[#030712] xl:min-h-[500px]">
+        <section className="relative h-[400px] overflow-hidden rounded-[30px] border border-white/10 bg-[#030712] md:h-[340px] xl:h-[550px]">
             {hasImage ? (
-                <img src={apod.url} alt={apod.title} className="h[420px] w-full object-cover" />
+                <Image src={apod.url} alt={apod.title} fill className="object-cover" priority />
             ) : (
                 <div className="h-[420px] w-full bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_35%),linear-gradient(180deg,_rgba(255,255,255,0.10)_0%,_rgba(255,255,255,0.04)_22%,_rgba(3,7,18,0.92)_72%,_#020617_100%)]" />
             )}

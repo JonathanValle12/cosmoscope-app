@@ -7,20 +7,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en">
-      <body>
+    <html lang="en">
+      <body className="bg-[#020307] text-white">
+        <Sidebar />
 
-        <div className="min-h-screen bg-[#020307] text-white">
-          <div className="grid min-h-screen grid-cols-[240px_1fr]">
-            <Sidebar />
-            <main className="overflow-y-auto">
-              <div className="mx-auto w-full p-6 lg:p-6">
-                {children}
-              </div>
-            </main>
+        <main className="ml-[250px] min-h-screen">
+          <div className="mx-auto w-full p-6">
+            {children}
           </div>
-        </div>
+        </main>
       </body>
     </html>
   );

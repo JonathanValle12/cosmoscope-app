@@ -7,7 +7,6 @@ import { HiOutlineGlobeAlt } from "react-icons/hi2"
 interface QuickStatsProps {
     asteroidCount: number
     eventCount: number,
-    imageCount: number
     earthDate: string,
 }
 
