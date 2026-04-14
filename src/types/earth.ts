@@ -8,3 +8,8 @@ export interface EPICImage {
         lon: number;
     }
 }
+
+export interface EarthImageItem extends EPICImage {
+    imageUrl: string;
+    formattedDate: string;
+}
