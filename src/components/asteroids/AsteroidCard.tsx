@@ -50,7 +50,7 @@ export default function AsteroidCard({ asteroid }: AsteroidCardProps) {
   return (
     <article
       className={[
-        "group relative rounded-2xl bg-[#050816] p-5 transition-all duration-200",
+        "group relative rounded-2xl bg-[#04070d] p-5 transition-all duration-200",
         isHazardous
           ? "border border-orange-500/30 hover:border-orange-500/50 hover:shadow-[0_0_0_1px_rgba(251,146,60,0.18)]"
           : "border border-white/10 hover:border-cyan-400/60 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.12)]",

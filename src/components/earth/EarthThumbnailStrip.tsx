@@ -61,7 +61,7 @@ export default function EarthThumbnailStrip({
                         className="shrink-0">
                         <div
                             className={[
-                                "flex h-[74px] w-[74px] items-center justify-center rounded-2xl border bg-[#050816] p-2 transition-all duration-200",
+                                "flex h-[74px] w-[74px] items-center justify-center rounded-2xl border bg-[#04070d] p-2 transition-all duration-200",
                                 isActive
                                     ? "border-cyan-400 shadow-[0_0_0_1px_rgba(34,211,238,0.18),0_0_14px_rgba(34,211,238,0.10)]"
                                     : "border-white/10 hover:border-cyan-400/40",

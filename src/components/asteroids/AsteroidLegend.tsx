@@ -1,6 +1,6 @@
 export default function AsteroidLegend() {
     return (
-        <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-2xl border border-white/10 bg-[#050816] px-5 py-4 text-sm text-gray-400">
+        <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 rounded-2xl border border-white/10 bg-[#04070d] px-5 py-4 text-sm text-gray-400">
 
             {/* Hazardous */}
             <div className="flex items-center gap-2">

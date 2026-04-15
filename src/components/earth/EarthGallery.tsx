@@ -30,7 +30,7 @@ export default function EarthGallery({ images }: EarthGalleryProps) {
 
     if (!images.length) {
         return (
-            <div className="mt-8 rounded-2xl border border-white/10 bg-[#050816] p-6 text-gray-400">
+            <div className="mt-8 rounded-2xl border border-white/10 bg-[#04070d] p-6 text-gray-400">
                 No EPIC images available right now.
             </div>
         )
@@ -79,7 +79,7 @@ export default function EarthGallery({ images }: EarthGalleryProps) {
                 </div>
 
                 <div className="flex justify-center">
-                    <div className="-mt-8 rounded-full border border-white/10 bg-[#050816] px-4 py-2 text-sm font-medium text-white">
+                    <div className="-mt-8 rounded-full border border-white/10 bg-[#04070d] px-4 py-2 text-sm font-medium text-white">
                         {currentIndex + 1} / {images.length}
                     </div>
                 </div>

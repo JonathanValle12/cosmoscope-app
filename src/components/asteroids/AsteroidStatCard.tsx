@@ -18,7 +18,7 @@ export default function AsteroidStatCard({
   iconBgClassName = "bg-cyan-500/10",
 }: AsteroidStatCardProps) {
   return (
-    <article className="rounded-2xl border border-white/10 bg-[#050816] p-5">
+    <article className="rounded-2xl border border-white/10 bg-[#04070d] p-5">
       <div className="mb-4 flex items-center gap-4">
         <div
           className={`flex h-10 w-10 items-center justify-center rounded-xl ${iconBgClassName}`}
