@@ -6,9 +6,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
   return (
     <html lang="en">
-      <body className="bg-[#020307] text-white">
+      <body suppressHydrationWarning className="bg-[#020307] text-white">
         <Sidebar />
 
         <main className="ml-[250px] min-h-screen">

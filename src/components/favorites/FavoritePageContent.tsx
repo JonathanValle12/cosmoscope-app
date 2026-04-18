@@ -1,18 +1,48 @@
-import { HiOutlineHeart } from "react-icons/hi2"
+'use client';
+
+import { useEffect, useState } from "react"
+import FavoriteHero from "./FavoriteHero"
+import { FavoriteItem } from "@/types/favorite"
+import { groupFavorites, removeFavorite } from "@/lib/favorites";
+import FavoriteEmptyState from "./FavoriteEmptyState";
+import FavoriteSection from "./FavoriteSection";
 
 export default function FavoritePageContent() {
+    const [favorites, setFavorites] = useState<FavoriteItem[]>([]);
+    const [isReady, setIsReady] = useState(false);
+
+    useEffect(() => {
+
+        try {
+            const stored = localStorage.getItem("cosmoscope-favorites");
+            setFavorites(stored ? JSON.parse(stored) : []);
+        } catch {
+            setFavorites([]);
+        } finally {
+            setIsReady(true);
+        }
+    }, []);
+
+    function handleRemove(id: string, type: FavoriteItem["type"]) {
+        const updated = removeFavorite(id, type);
+        setFavorites(updated);
+    }
+
+    const sections = groupFavorites(favorites);
+
     return (
         <section className="min-h-screen" aria-labelledby="explorer-title">
-            <header className="flex flex-col gap-3">
-                <div className="flex items-center gap-4">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10">
-                        <HiOutlineHeart  className="w-5 h-5 text-cyan-400" aria-hidden="true" />
-                    </div>
+            <FavoriteHero />
 
-                    <h2 className="text-3xl font-semibold tracking-tight text-white">Favorites</h2>
+            {!isReady ? null : favorites.length === 0 ? (
+                <FavoriteEmptyState />
+            ) : (
+                <div className="mt-10 space-y-10">
+                    {sections.map((section) => (
+                        <FavoriteSection key={section.key} section={section} onRemove={handleRemove} />
+                    ))}
                 </div>
-                <p className="text-gray-400 text-mx">Your saved comic discoveries</p>
-            </header>
+            )}
         </section>
     )
 }

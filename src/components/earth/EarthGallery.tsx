@@ -4,15 +4,19 @@ import { EarthImageItem } from "@/types/earth";
 import Image from "next/image";
 import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { HiOutlineArrowTopRightOnSquare, HiOutlineHeart } from "react-icons/hi2";
+import { HiOutlineArrowTopRightOnSquare } from "react-icons/hi2";
 import { LuCalendarDays, LuMapPin } from "react-icons/lu";
 import EarthThumbnailStrip from "./EarthThumbnailStrip";
+import { FavoriteItem } from "@/types/favorite";
+import FavoriteToggleButton from "@/components/shared/FavoriteToggleButton";
+import { isFavoriteFromCookie } from "@/lib/favorites";
 
 interface EarthGalleryProps {
     images: EarthImageItem[];
+    favCookie: string;
 }
 
-export default function EarthGallery({ images }: EarthGalleryProps) {
+export default function EarthGallery({ images, favCookie }: EarthGalleryProps) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -36,13 +40,27 @@ export default function EarthGallery({ images }: EarthGalleryProps) {
         )
     }
 
+    const favoriteItem: FavoriteItem = {
+        id: currentImage.identifier,
+        type: "image",
+        title: `Earth from Space - ${currentImage.formattedDate}`,
+        description: currentImage.caption,
+        date: currentImage.formattedDate,
+        imageUrl: currentImage.imageUrl,
+        href: currentImage.imageUrl,
+    };
+
+    const initialFavorite = isFavoriteFromCookie(currentImage.identifier, "image", favCookie);
+
     return (
         <div className="mt-8 flex flex-col items-center">
             <div className="relative w-full max-w-[750px] rounded-[28px] border border-white/10 bg-black px-6 py-6">
                 <div className="absolute right-4 top-4 z-10 flex items-center gap-3">
-                    <button type="button" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-cyan-300" aria-label="Add to favorites">
-                        <HiOutlineHeart className="h-6 w-6" />
-                    </button>
+                    <FavoriteToggleButton
+                        key={currentImage.identifier}
+                        initialFavorite={initialFavorite}
+                        item={favoriteItem}
+                        size="lg"/>  
 
                     <a href={currentImageUrl} target="_blank" rel="noreferrer" className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white/80 transition hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-cyan-300" aria-label="Open image">
                         <HiOutlineArrowTopRightOnSquare className="h-6 w-6" />

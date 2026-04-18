@@ -6,18 +6,20 @@ import { useState } from "react";
 
 interface EventCategorySectionProps {
     section: EventCategorySectionData;
+    favCookie: string;
 }
 
-const INITIAL_VISIBLE = 9;
-const LOAD_MORE_STEP = 9;
+const INITIAL_VISIBLE = 12;
+const LOAD_MORE_STEP = 15;
 
-export default function EventCategorySection({ section }: EventCategorySectionProps) {
+export default function EventCategorySection({ section, favCookie }: EventCategorySectionProps) {
 
     const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
     const visibleEvents = section.events.slice(0, visibleCount);
 
     const hasMore = visibleCount < section.events.length;
+    const canShowLess = visibleCount > INITIAL_VISIBLE;
 
     return (
         <section className="space-y-5">
@@ -28,15 +30,28 @@ export default function EventCategorySection({ section }: EventCategorySectionPr
 
             <div className="grid grid-cols-1 gap-4 xl:grid-cols-3">
                 {visibleEvents.map((event) => (
-                    <EventCard key={event.id} event={event} />
+                    <EventCard key={event.id} event={event} favCookie={favCookie} />
                 ))}
             </div>
-            {hasMore && (
-                <button 
-                    onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_STEP)}
-                    className="rounded-2xl border border-white-10 px-4 py-2 text-sm text-gray-300 hover:border-cyan-400/40 hover:text-white cursor-pointer">
-                    Show more
-                </button>
+            {(hasMore || canShowLess) && (
+                <div className="flex items-center gap-3">
+                    {hasMore && (
+                        <button
+                            type="button"
+                            onClick={() => setVisibleCount((prev) => prev + LOAD_MORE_STEP)}
+                            className="inline-flex items-center rounded-xl border border-white/15 bg-white/[0.04] px-4 py-2 text-sm font-medium text-gray-200 transition hover:border-white/25 hover:bg-white/[0.08] hover:text-white active:scale-[0.98] cursor-pointer">
+                            Show more ({section.events.length - visibleCount})
+                        </button>
+                    )}
+                    {canShowLess && (
+                        <button
+                            type="button"
+                            onClick={() => setVisibleCount(INITIAL_VISIBLE)}
+                            className="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-4 py-2 text-sm font-medium text-gray-300 transition hover:border-white/25 hover:bg-white/[0.08] hover:text-white active:scale-[0.98] cursor-pointer">
+                            Show less
+                        </button>
+                    )}
+                </div>
             )}
         </section>
     )

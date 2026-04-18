@@ -1,6 +1,5 @@
 import { IconType } from "react-icons";
 
-
 interface EventsStatsCardProps {
     title: string;
     value: string | number;

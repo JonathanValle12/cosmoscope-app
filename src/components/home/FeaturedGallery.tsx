@@ -40,7 +40,7 @@ export default async function FeaturedGallery() {
                             <article key={data.nasa_id} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#030608] transition-all duration-300 hover:border-cyan-400/60">
                                 <div className="relative overflow-hidden">
                                     <div className="relative h-[220px] w-full">
-                                        <Image src={imageUrl} alt={data.title} width={400} height={200} className="object-cover transition-transform duration-500 group-hover:scale-110" priority />
+                                        <Image src={imageUrl} alt={data.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw" priority />
                                     </div>
                                     <button type="button" aria-label="Guardar en favoritos" className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#050816]/80 text-white/80 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:border-cyan-400 hover:text-cyan-400">
                                         <HiOutlineHeart className="h-5 w-5" />
@@ -77,7 +77,7 @@ export default async function FeaturedGallery() {
                             <article key={data.nasa_id} className="group overflow-hidden rounded-3xl border border-white/10 bg-[#030608] transition-all duration-300 hover:border-cyan-400/60">
                                 <div className="relative overflow-hidden">
                                     <div className="relative h-[220px] w-full">
-                                        <Image src={imageUrl} alt={data.title} width={400} height={200} className="object-cover transition-transform duration-500 group-hover:scale-110" priority />
+                                        <Image src={imageUrl} alt={data.title} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 25vw" priority />
                                     </div>
                                     <button type="button" aria-label="Guardar en favoritos" className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-[#050816]/80 text-white/80 opacity-0 backdrop-blur-sm transition-all duration-300 group-hover:opacity-100 hover:border-cyan-400 hover:text-cyan-400">
                                         <HiOutlineHeart className="h-5 w-5" />

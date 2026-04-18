@@ -1,12 +1,17 @@
+'use client';
+
 import type { AsteroidCardData } from "@/types/asteroid";
 import { TbRulerMeasure } from "react-icons/tb";
 import { FiTrendingUp } from "react-icons/fi";
 import { LuMoveDiagonal } from "react-icons/lu";
 import { IoWarningOutline } from "react-icons/io5";
-import { HiOutlineHeart } from "react-icons/hi2";
+import { FavoriteItem } from "@/types/favorite";
+import FavoriteToggleButton from "../shared/FavoriteToggleButton";
+import { isFavoriteFromCookie } from "@/lib/favorites";
 
 interface AsteroidCardProps {
   asteroid: AsteroidCardData;
+  favCookie: string;
 }
 
 function formatDistanceKm(value: number) {
@@ -44,8 +49,18 @@ function getSizeBadgeClasses(sizeLabel: AsteroidCardData["sizeLabel"]) {
   }
 }
 
-export default function AsteroidCard({ asteroid }: AsteroidCardProps) {
+export default function AsteroidCard({ asteroid, favCookie }: AsteroidCardProps) {
   const isHazardous = asteroid.hazardous;
+
+  const favoriteItem: FavoriteItem = {
+    id: asteroid.id,
+    type: "asteroid",
+    title: asteroid.name,
+    description: `Near-Earth asteroid approaching on ${asteroid.closestApproach}`,
+    date: asteroid.closestApproach,
+  };
+
+  const initialFavorite = isFavoriteFromCookie(asteroid.id, "asteroid", favCookie);
 
   return (
     <article
@@ -56,19 +71,12 @@ export default function AsteroidCard({ asteroid }: AsteroidCardProps) {
           : "border border-white/10 hover:border-cyan-400/60 hover:shadow-[0_0_0_1px_rgba(34,211,238,0.12)]",
       ].join(" ")}
     >
-      <button
-        type="button"
-        aria-label={`Add ${asteroid.name} to favorites`}
-        className={[
-          "absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full",
-          "border border-white/10 bg-white/5 text-gray-400 opacity-0",
-          "transition-all duration-200 group-hover:opacity-100",
-          "hover:border-cyan-400/40 hover:bg-cyan-500/10 hover:text-cyan-300",
-          isHazardous ? "right-5 top-5" : "right-5 top-5",
-        ].join(" ")}
-      >
-        <HiOutlineHeart className="h-4.5 w-4.5" />
-      </button>
+      <FavoriteToggleButton
+        item={favoriteItem}
+        initialFavorite={initialFavorite}
+        size="md"
+        hideUntilHover
+        className="absolute right-5 top-5" />
 
       {isHazardous && (
         <div className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full border border-orange-500/50 bg-orange-500/10 backdrop-blur-sm">

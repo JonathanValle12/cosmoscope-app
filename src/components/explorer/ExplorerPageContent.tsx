@@ -12,7 +12,7 @@ export default function ExplorerPageContent() {
 
                     <h2 className="text-3xl font-semibold tracking-tight text-white">Space Explorer</h2>
                 </div>
-                <p className="text-gray-400 text-mx">Search through NASA's vast library of images and videos</p>
+                <p className="text-gray-400 text-mx">Search through NASA&apos;s vast library of images and videos</p>
 
                 <div className="max-w-3xl">
                     <ExplorerSearchSection />

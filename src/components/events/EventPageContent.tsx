@@ -5,9 +5,10 @@ import EventStatsGrid from "./EventStatsGrid"
 import EventCategorySection from "./EventCategorySection"
 
 interface EventPageContentProps {
-    data: EventsPageData
+    data: EventsPageData;
+    favCookie: string;
 }
-export default function EventPageContent({ data }: EventPageContentProps) {
+export default function EventPageContent({ data, favCookie }: EventPageContentProps) {
     return (
         <section className="min-h-screen" aria-labelledby="explorer-title">
             <EventHero />
@@ -16,7 +17,7 @@ export default function EventPageContent({ data }: EventPageContentProps) {
 
             <div className="mt-8 space-y-10">
                 {data.sections.map((section) => (
-                    <EventCategorySection key={section.key} section={section} />
+                    <EventCategorySection key={section.key} section={section} favCookie={favCookie} />
                 ))}
             </div>
         </section>

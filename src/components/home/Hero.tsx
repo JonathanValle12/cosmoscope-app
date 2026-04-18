@@ -12,7 +12,7 @@ export default async function Hero() {
     return (
         <section className="relative h-[400px] overflow-hidden rounded-[30px] border border-white/10 bg-[#030712] md:h-[340px] xl:h-[550px]">
             {hasImage ? (
-                <Image src={apod.url} alt={apod.title} fill className="object-cover" priority />
+                <Image src={apod.url} alt={apod.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, calc(100vw - 298px)" priority />
             ) : (
                 <div className="h-[420px] w-full bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_35%),linear-gradient(180deg,_rgba(255,255,255,0.10)_0%,_rgba(255,255,255,0.04)_22%,_rgba(3,7,18,0.92)_72%,_#020617_100%)]" />
             )}

@@ -47,7 +47,6 @@ export interface EventCategorySectionData {
     key: string;
     title: string;
     count: number;
-    accentColor: EventAccentColor;
     events: EventCardData[];
 }
 

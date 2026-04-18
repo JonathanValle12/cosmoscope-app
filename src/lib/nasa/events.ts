@@ -114,7 +114,6 @@ function groupEvents(events: NaturalEvent[]): EventCategorySectionData[] {
             key: title.toLowerCase().replace(/\s+/g, "-"),
             title,
             count: groupedEvents.length,
-            accentColor: groupedEvents[0]?.accentColor ?? "blue",
             events: groupedEvents.sort((a, b) => {
                 return (
                     new Date(b.formattedDate).getTime() - new Date(a.formattedDate).getTime()
